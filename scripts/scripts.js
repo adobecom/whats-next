@@ -1,3 +1,4 @@
+
 /*
  * Copyright 2022 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -13,7 +14,7 @@
 import { setLibs, decorateArea } from './utils.js';
 
 // Add project-wide style path here.
-const STYLES = '';
+const STYLES = '/styles/styles.css';
 
 // Use 'https://milo.adobe.com/libs' if you cannot map '/libs' to milo's origin.
 const LIBS = '/libs';

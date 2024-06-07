@@ -6,3 +6,17 @@
  * 
  *
  */
+
+ :root {
+    --grid-container-width: 1500px; }
+
+ @media (min-width: 77rem) {
+
+    main .section .marquee .foreground {
+        gap: 60px;
+    }
+    
+    main .section .marquee .foreground .asset {
+        max-width: 100%;
+    }
+ }
