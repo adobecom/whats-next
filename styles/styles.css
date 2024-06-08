@@ -10,6 +10,13 @@
  :root {
     --grid-container-width: 1500px; }
 
+    .text.hotspot .con-button {
+    width: 6%;
+    font-size: 25px;
+    padding: 15px 30px 18px;
+    border-radius: 25px;
+    }
+
  @media (min-width: 77rem) {
 
     main .section .marquee .foreground {
