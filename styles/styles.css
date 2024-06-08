@@ -17,7 +17,27 @@
     border-radius: 25px;
     }
 
+    .text-block.join .foreground .cta-container > div {
+        flex-direction: column;
+    }
+
  @media (min-width: 77rem) {
+
+    .text-block.join .foreground .cta-container > div .con-button {
+        font-size: 20px;
+        padding: 10px 19px;
+        border-radius: 25px;
+    }
+
+    .text-block.join .foreground .cta-container > div .con-button:hover {
+        background-color: black;
+        color: white;
+        border-color: black;
+    }
+
+    .media.large.hotspot > .foreground .media-row {
+        max-width: 1500px;
+    }
 
     main .section .marquee .foreground {
         gap: 60px;
