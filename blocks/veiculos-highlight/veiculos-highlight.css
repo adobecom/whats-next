@@ -52,12 +52,12 @@
 }
 
 .veiculos-highlight .highlighted-vehicle > div > div.vehicle > div a {
-    width: 31%;
+    width: 32%;
     height: auto;
     display: block;
     color: #000;
-    font-size: 22px;
-    font-family: HyundaiSansHead-Regular, sans-serif;
+    font-size: 24px;
+    font-family: var(--body-font-family);
     line-height: 1.2;
     background-color: transparent;
     border-radius: 25px;

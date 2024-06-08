@@ -10,6 +10,10 @@
  :root {
     --grid-container-width: 1500px; }
 
+    main .section .marquee .foreground h2 {
+        text-align: center;
+    }
+
     .text.hotspot .con-button {
     width: 6%;
     font-size: 25px;
@@ -21,6 +25,10 @@
 
     main .section .marquee .foreground {
         gap: 60px;
+    }
+
+    main .section .marquee .foreground h2 {
+        text-align: left;
     }
     
     main .section .marquee .foreground .asset {
