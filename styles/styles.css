@@ -11,13 +11,28 @@
     --grid-container-width: 1500px; }
 
     .text.hotspot .con-button {
-    width: 6%;
     font-size: 25px;
     padding: 15px 30px 18px;
     border-radius: 25px;
     }
 
+    .text-block.join .foreground .cta-container > div {
+        flex-direction: column;
+    }
+
  @media (min-width: 77rem) {
+
+    .text-block.join .foreground .cta-container > div .con-button {
+        font-size: 20px;
+        padding: 10px 19px;
+        border-radius: 25px;
+    }
+
+    .text-block.join .foreground .cta-container > div .con-button:hover {
+        background-color: black;
+        color: white;
+        border-color: black;
+    }
 
     main .section .marquee .foreground {
         gap: 60px;
