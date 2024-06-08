@@ -35,10 +35,6 @@
         border-color: black;
     }
 
-    .media.large.hotspot > .foreground .media-row {
-        max-width: 1500px;
-    }
-
     main .section .marquee .foreground {
         gap: 60px;
     }
