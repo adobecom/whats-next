@@ -7,9 +7,6 @@
  *
  */
 
- :root {
-    --grid-container-width: 1500px; }
-
     .text.hotspot .con-button {
     font-size: 25px;
     padding: 15px 30px 18px;
@@ -21,6 +18,9 @@
     }
 
  @media (min-width: 77rem) {
+
+    :root {
+        --grid-container-width: 1500px; }
 
     .text-block.join .foreground .cta-container > div .con-button {
         font-size: 20px;
