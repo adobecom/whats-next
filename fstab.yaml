@@ -5,6 +5,3 @@
 
 mountpoints:
   /: https://adobe.sharepoint.com/:f:/r/sites/adobecom/Shared%20Documents/whats-next/ams
-
-folders:
-  /libs/: https://main--milo--adobecom.hlx.live/libs/
