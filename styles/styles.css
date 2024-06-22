@@ -41,4 +41,14 @@
     main .section .marquee .foreground .asset {
         max-width: 100%;
     }
+
+   .marquee.light.small .text h1 {
+        font-size: var(--type-heading-xl-size);
+        line-height: var(--type-heading-xl-lh);
+    }
+
+    .marquee.light.small .text h2 {
+        font-size: var(--type-heading-s-size);
+        line-height: var(--type-heading-s-lh);
+    }
  }
