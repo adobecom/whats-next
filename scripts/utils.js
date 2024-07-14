@@ -65,6 +65,10 @@ export function externalLinks() {
   const links = document.querySelectorAll('a[href]');
   links.forEach((linkItem) => {
     const linkValue = linkItem.getAttribute('href');
+      console.log(linkValue);
+      if (linkValue.includes('qsr/EDS')){
+        linkItem.setAttribute('href', 'https://whatsnext--aemms--adobe.hlx.live' + linkValue);
+      }
       linkItem.setAttribute('target', '_blank');
   });
 }
