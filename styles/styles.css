@@ -17,10 +17,31 @@
         flex-direction: column;
     }
 
+    .marquee.edsviaeds h1 {
+        font-size: 4vw;
+        line-height: 1.5;
+        font-weight: 100;
+        margin-top: 0;
+        letter-spacing: 1px;
+        color: transparent;
+        -webkit-text-stroke: 1px #fff;
+        /* background: url(https://main--aemms--adobe.hlx.page/qsr/Q1-2024/assets/media_198ae51….png); */
+        background: url(https://main--hackathon2023--meejain.hlx.page/assets/media_198ae51d59e74b881263e5cd361dce216b062e203.png);
+        -webkit-background-clip: text;
+        background-position: 0 0;
+    }
+
+    .marquee.small.edsviaeds {
+        min-height: 260px;
+    }
+
  @media (min-width: 77rem) {
 
     :root {
-        --grid-container-width: 1500px; }
+        --grid-container-width: 1500px;
+        --type-body-xl-lh: 54px;
+        --primary: #00587c;
+     }
 
     .text-block.join .foreground .cta-container > div .con-button {
         font-size: 20px;
@@ -37,6 +58,33 @@
     main .section .marquee .foreground {
         gap: 60px;
     }
+
+      /* For the accomplishments section */
+
+      .marquee.large.accomplishments {
+        min-height: 850px;
+      }
+
+      main .section .marquee.accomplishments h2 {
+        margin-bottom: 1rem;
+        color: var(--primary);
+        border-bottom: 1px solid var(--primary); 
+      }
+
+    main .section .marquee.accomplishments .foreground > div {
+        max-width: 800px;
+    }
+
+    main .section .marquee.accomplishments .foreground > div {
+        flex: 1;
+    }
+
+    /* For the funnel section */
+
+    .marquee.funnel.split.one-third .foreground.container .text, .marquee.split.one-third.large .foreground.container .text {
+        max-width: calc(43.3334% - var(--grid-column-width));
+    }
+}
     
     main .section .marquee .foreground .asset {
         max-width: 100%;
