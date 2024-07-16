@@ -35,6 +35,23 @@
         min-height: 260px;
     }
 
+    .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless):hover {
+        -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
+        box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
+        background-color: rgba(255, 255, 255, .25);
+        padding: 10px;
+        border-radius: 10px;
+        transition: 2s;
+    }
+
+    .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless) img {
+        border-radius: 10px;
+    }
+
+    .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless) img:hover {
+        opacity: 0.6;
+    }
+
  @media (min-width: 77rem) {
 
     :root {
