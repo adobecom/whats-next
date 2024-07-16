@@ -69,6 +69,9 @@ export function externalLinks() {
       if (linkValue.includes('qsr/EDS')){
         linkItem.setAttribute('href', 'https://whatsnext--aemms--adobe.hlx.live' + linkValue);
       }
+      else if (linkValue.includes('/partners/')) {
+        linkItem.setAttribute('href', 'https://main--exchange-partners--adobecom.hlx.live' + linkValue);
+      }
       linkItem.setAttribute('target', '_blank');
   });
 }
