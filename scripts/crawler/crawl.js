@@ -61,7 +61,7 @@ function getURLsfromHTML(htmlBody, baseURL) {
     const parser = new DOMParser();
     const dom = parser.parseFromString(htmlBody, 'text/html');
 
-    dom.document.querySelectorAll('a').forEach((a) => {
+    dom.querySelectorAll('a').forEach((a) => {
         const href = a.getAttribute('href');
         if (!href) {
             return;
