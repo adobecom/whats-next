@@ -21,8 +21,8 @@ export async function loadSitemap(sitemapURL, origin, host, config = {}) {
         config.log(`Extracting URLs from sitemap: ${sitemapURL}`);
       }
       const xml = (await resp.text()).trim();
-      const dom = new JSDOM(xml);
-      const sitemap = (new dom.window.DOMParser()).parseFromString(xml, 'text/xml');
+      // const dom = new JSDOM(xml);
+      const sitemap = new DOMParser().parseFromString(xml, 'text/xml');
   
       const errorNode = sitemap.querySelector('parsererror');
       if (errorNode) {
