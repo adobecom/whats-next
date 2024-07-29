@@ -1,3 +1,7 @@
+.crawler {
+    text-align: center;
+}
+
 .crawler form {
     display: flex;
     flex-direction: row;
@@ -47,6 +51,48 @@
     border: 2px solid var(--text-color);
     width: 25vw;
 }
+
+.dotsectionclass {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.dotsectionclass .dot {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #4b9cdb;
+}
+
+@keyframes jumping {
+    0% {
+      transform: translate3d(0, 0, 0);
+    }
+    
+    50% {
+      transform: translate3d(0, 15px, 0);
+    }
+    
+    100% {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+.dotsectionclass .dot:nth-child(1) {
+    animation: jumping 0.8s 0.1s ease-in infinite;
+}
+
+.dotsectionclass .dot:nth-child(2) {
+    animation: jumping 0.8s 0.2s ease-in infinite;
+}
+
+.dotsectionclass .dot:nth-child(3) {
+    animation: jumping 0.8s 0.3s ease-in infinite;
+}
+
+
 
 @media (width < 992px) {
     .crawler {
