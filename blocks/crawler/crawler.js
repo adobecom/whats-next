@@ -1,6 +1,8 @@
 import { main } from '../../scripts/crawler/main.js';
 import { div } from '../../scripts/dom-helpers.js';
 
+let crawledURLs = null;
+
 export default function init(block) {
     const crawlerDiv = document.createElement('div');
     crawlerDiv.innerHTML = `
@@ -26,6 +28,8 @@ export default function init(block) {
         web.preventDefault();
         const url = web.target.url.value;
         crawlerDiv.parentNode.replaceChildren(dotsection);
-        await main(url);
+        const crawledURLs = await main(url);
+        console.log(crawledURLs)
+        dotsection.parentNode.replaceChildren(crawlerDiv);
     });    
 }
