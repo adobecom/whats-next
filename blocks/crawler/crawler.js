@@ -1,5 +1,5 @@
 import { main } from '../../scripts/crawler/main.js';
-import { div } from '../../scripts/dom-helpers.js';
+import { div, button } from '../../scripts/dom-helpers.js';
 
 let crawledURLs = null;
 
@@ -13,6 +13,7 @@ export default function init(block) {
     </form>
     `;
 
+    // Dot Section
     const dotsection = div({ class: 'dotsectionclass' });
     const firstdot = div({ class: 'dot' });
     const seconddot = div({ class: 'dot' });
@@ -20,7 +21,12 @@ export default function init(block) {
     dotsection.appendChild(firstdot);
     dotsection.appendChild(seconddot);
     dotsection.appendChild(thirddot);
-    // crawlerDiv.appendChild(dotsection);
+
+    //Download Report Button
+    const downloadSection = div({ class: 'crawl-downloadCrawlReport' });
+    const downloadReport = button('Download Crawl Report');
+    downloadSection.appendChild(downloadReport);
+
     console.log(dotsection.parentNode)
     block.appendChild(crawlerDiv);
 
@@ -30,6 +36,6 @@ export default function init(block) {
         crawlerDiv.parentNode.replaceChildren(dotsection);
         const crawledURLs = await main(url);
         console.log(crawledURLs)
-        dotsection.parentNode.replaceChildren(crawlerDiv);
+        dotsection.parentNode.replaceChildren(downloadSection);
     });    
 }
