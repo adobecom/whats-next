@@ -31,11 +31,22 @@ export default function init(block) {
     block.appendChild(crawlerDiv);
 
     crawlerDiv.querySelector('form').addEventListener('submit', async (web) => {
+        let crawlStatus = {
+            crawled: 0,
+            rows: [],
+            urls: [],
+          };
         web.preventDefault();
         const url = web.target.url.value;
         crawlerDiv.parentNode.replaceChildren(dotsection);
-        const crawledURLs = await main(url);
-        console.log(crawledURLs)
+        crawlStatus.urls = await main(url);
+        crawlStatus.urls.forEach((url, index) => {
+            const row = {
+                url,
+              };
+                crawlStatus.rows.push(row);
+        });
+        console.log(crawlStatus.urls);
         dotsection.parentNode.replaceChildren(downloadSection);
     });    
 }
