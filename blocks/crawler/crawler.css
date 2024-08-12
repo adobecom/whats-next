@@ -52,6 +52,20 @@
     width: 25vw;
 }
 
+.crawler .crawl-downloadCrawlReport {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.crawler .crawl-downloadCrawlReport label {
+    font-size: 24px;
+    font-weight: bold;
+    font-family: var(--body-font-family);
+}
+
 .crawler .crawl-downloadCrawlReport button {
     border-color: var(--text-color);
     color: var(--text-color);
@@ -124,5 +138,12 @@
         width: 30vw;
         flex-direction: column;
         justify-content: center;
+    }
+
+    .crawler .crawl-downloadCrawlReport {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
     }
 }

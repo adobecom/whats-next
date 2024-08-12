@@ -1,5 +1,5 @@
 import { main } from '../../scripts/crawler/main.js';
-import { div, button } from '../../scripts/dom-helpers.js';
+import { div, button, label } from '../../scripts/dom-helpers.js';
 
 //Create a scriopt element and append it to the head
 const script = document.createElement('script');
@@ -33,7 +33,9 @@ export default function init(block) {
 
     //Download Report Button
     const downloadSection = div({ class: 'crawl-downloadCrawlReport' });
+    const crawlerLabel = label({ class: 'crawl-crawlerLabel' });
     const downloadReport = button('Download Crawl Report');
+    downloadSection.appendChild(crawlerLabel);
     downloadSection.appendChild(downloadReport);
 
     console.log(dotsection.parentNode)
@@ -52,6 +54,7 @@ export default function init(block) {
                 crawlStatus.rows.push(row);
         });
         console.log(crawlStatus.urls);
+        crawlerLabel.innerHTML = `${crawlStatus.urls.length} URLs detected`;
         dotsection.parentNode.replaceChildren(downloadSection);
     });   
     
@@ -85,5 +88,6 @@ export default function init(block) {
         a.setAttribute('href', URL.createObjectURL(blob));
         a.setAttribute('download', 'crawl_report.xlsx');
         a.click();
+        downloadSection.parentNode.replaceChildren(crawlerDiv);
     }));
 }
