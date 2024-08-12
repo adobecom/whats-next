@@ -1,7 +1,16 @@
 import { main } from '../../scripts/crawler/main.js';
 import { div, button } from '../../scripts/dom-helpers.js';
 
-let crawledURLs = null;
+//Create a scriopt element and append it to the head
+const script = document.createElement('script');
+script.src = 'https://cdn.jsdelivr.net/npm/exceljs/dist/exceljs.min.js';
+document.head.appendChild(script);
+
+let crawlStatus = {
+  crawled: 0,
+  rows: [],
+  urls: [],
+};
 
 export default function init(block) {
     const crawlerDiv = document.createElement('div');
@@ -31,11 +40,7 @@ export default function init(block) {
     block.appendChild(crawlerDiv);
 
     crawlerDiv.querySelector('form').addEventListener('submit', async (web) => {
-        let crawlStatus = {
-            crawled: 0,
-            rows: [],
-            urls: [],
-          };
+        
         web.preventDefault();
         const url = web.target.url.value;
         crawlerDiv.parentNode.replaceChildren(dotsection);
@@ -48,5 +53,37 @@ export default function init(block) {
         });
         console.log(crawlStatus.urls);
         dotsection.parentNode.replaceChildren(downloadSection);
-    });    
+    });   
+    
+    //Download Report Button click event
+    downloadSection.addEventListener('click', (async () => {
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Sheet 1');
+    
+        let headers = ['URL'];
+    
+        worksheet.addRows([
+          headers,
+        ].concat(crawlStatus.rows.map(({
+          // eslint-disable-next-line max-len
+          url,
+          status,
+          redirect,
+          nbLinks,
+          nbLinksAlreadyProcessed,
+          nbLinksExternalHost,
+          nbLinksToFollow,
+          linksToFollow,
+          nbLinksExcluded,
+          linksExcluded,
+        }) => {
+          return [url];
+        })));
+        const buffer = await workbook.xlsx.writeBuffer();
+        const a = document.createElement('a');
+        const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        a.setAttribute('href', URL.createObjectURL(blob));
+        a.setAttribute('download', 'crawl_report.xlsx');
+        a.click();
+    }));
 }
