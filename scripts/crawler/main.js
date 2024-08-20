@@ -1,7 +1,3 @@
-// const {crawlPage, returnbrokenLinksURLs} = require('./crawl.js');
-// const {loadURLsFromRobots} = require('./sitemap.js');
-// const { printReport, printBrokenLinks } = require('./report.js');
-
 import { crawlPage, returnbrokenLinksURLs } from './crawl.js';
 import { loadURLsFromRobots } from './sitemap.js';
 import { printReport, printBrokenLinks } from './report.js';
@@ -15,9 +11,9 @@ const crawlStatus = {
 export async function mainCrawler(baseURL) {
     console.log(`Crawling ${baseURL}`);
     const pages = await crawlPage(baseURL, baseURL, baseURL, {});
-    printReport(pages);
-    const brokenLinks = returnbrokenLinksURLs();
-    printBrokenLinks(brokenLinks);
+    return printReport(pages);
+    // const brokenLinks = returnbrokenLinksURLs();
+    // printBrokenLinks(brokenLinks);
 }
 
 
@@ -27,8 +23,6 @@ export async function mainSitemap(url) {
     var newBaseURL = null;
 
     const baseURL = url;
-
-    // await mainCrawler(baseURL);
 
     //check for robots.txt / sitemap.txt
     try {

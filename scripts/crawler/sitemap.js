@@ -78,7 +78,7 @@ export async function loadSitemap(sitemapURL, origin, host, config = {}) {
   
       if (sitemaps.length === 0) {
         var smURL = new URL(`/sitemap.xml`, origin);
-        sitemapFile = smURL.toString();
+        let sitemapFile = smURL.toString();
         sitemaps.push(sitemapFile);
       }
       console.log("Here is the list of SiteMap URL's",sitemaps);

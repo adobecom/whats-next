@@ -2,12 +2,13 @@
 export function printReport(pages) {
     console.log("========== Report ==========");
     const sortedPages = sortPages(pages);
-    for (const sortedPage of sortedPages) {
-        const url = sortedPage[0];
-        const hits = sortedPage[1];
-        console.log(`${url}:${hits}`);
-    }
-    console.log("========== End Report ==========");
+    return sortedPages;
+    // for (const sortedPage of sortedPages) {
+    //     const url = sortedPage[0];
+    //     const hits = sortedPage[1];
+    //     console.log(`${url}:${hits}`);
+    // }
+    // console.log("========== End Report ==========");
 }
 
 export function printBrokenLinks(brokenLinks) {
@@ -27,9 +28,3 @@ export function sortPages(pages) {
     });
     return pageArray;
 }
-
-// module.exports = {  
-//     sortPages,
-//     printReport,
-//     printBrokenLinks
-//  };

@@ -51,9 +51,11 @@ export default function init(block) {
         targetUrl = url;
         crawlerDiv.parentNode.replaceChildren(dotsection);
         if (block.classList.contains('sitemap')) {
+          crawlStatus.rows=[];
           crawlStatus.urls = await mainSitemap(url);
         } else {
-          await mainCrawler(url);
+          crawlStatus.rows=[];
+          crawlStatus.urls = await mainCrawler(url);
         }
         crawlStatus.urls.forEach((url, index) => {
             const row = {
