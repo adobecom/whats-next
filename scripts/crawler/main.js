@@ -12,8 +12,8 @@ export async function mainCrawler(baseURL) {
     console.log(`Crawling ${baseURL}`);
     const pages = await crawlPage(baseURL, baseURL, baseURL, {});
     return printReport(pages);
-    // const brokenLinks = returnbrokenLinksURLs();
-    // printBrokenLinks(brokenLinks);
+    const brokenLinks = returnbrokenLinksURLs();
+    printBrokenLinks(brokenLinks);
 }
 
 

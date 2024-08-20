@@ -1,5 +1,8 @@
 import { mainSitemap, mainCrawler } from '../../scripts/crawler/main.js';
 import { div, button, label } from '../../scripts/dom-helpers.js';
+import { returnbrokenLinksURLs } from '../../scripts/crawler/crawl.js';
+import { printBrokenLinks } from '../../scripts/crawler/report.js';
+
 
 //Create a scriopt element and append it to the head
 const script = document.createElement('script');
@@ -53,9 +56,14 @@ export default function init(block) {
         if (block.classList.contains('sitemap')) {
           crawlStatus.rows=[];
           crawlStatus.urls = await mainSitemap(url);
-        } else {
+        } else if (block.classList.contains('google')) {
           crawlStatus.rows=[];
           crawlStatus.urls = await mainCrawler(url);
+        } else if (block.classList.contains('broken-links')) {
+          crawlStatus.rows=[];
+          crawlStatus.urls = returnbrokenLinksURLs();
+          // const brokenLinks = returnbrokenLinksURLs();
+          // printBrokenLinks(brokenLinks);
         }
         crawlStatus.urls.forEach((url, index) => {
             const row = {
