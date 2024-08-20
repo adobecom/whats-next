@@ -12,7 +12,7 @@ const crawlStatus = {
     urls: [],
   };
 
-async function crawling(baseURL) {
+export async function mainCrawler(baseURL) {
     console.log(`Crawling ${baseURL}`);
     const pages = await crawlPage(baseURL, baseURL, baseURL, {});
     printReport(pages);
@@ -22,21 +22,13 @@ async function crawling(baseURL) {
 
 
 
-export async function main(url) {
+export async function mainSitemap(url) {
     var resp = null;
     var newBaseURL = null;
 
-    // if (process.argv.length < 3) {
-    //     console.log("Usage: node main.js <input_file>");
-    //     process.exit(1);
-    // } else if (process.argv.length > 3) {
-    //     console.log("Usage is just 1 website: node main.js <input_file>");
-    //     process.exit(1);
-    // }
-    // const baseURL = process.argv[2];
     const baseURL = url;
 
-    // await crawling(baseURL);
+    // await mainCrawler(baseURL);
 
     //check for robots.txt / sitemap.txt
     try {
@@ -67,12 +59,11 @@ export async function main(url) {
         crawlStatus.urls = await loadURLsFromRobots(newBaseURL, newBaseURL);
         if (crawlStatus.urls.length === 0) {
             console.log("Issue accessing sitemap, hence crawling the base URL");
-            await crawling(baseURL);
+            await mainCrawler(baseURL);
         }
         return crawlStatus.urls;
     } else {
-        await crawling(baseURL);
+        await mainCrawler(baseURL);
     }
-}
 
-// main();
+}

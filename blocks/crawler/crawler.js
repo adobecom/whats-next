@@ -1,4 +1,4 @@
-import { main } from '../../scripts/crawler/main.js';
+import { mainSitemap, mainCrawler } from '../../scripts/crawler/main.js';
 import { div, button, label } from '../../scripts/dom-helpers.js';
 
 //Create a scriopt element and append it to the head
@@ -12,7 +12,10 @@ let crawlStatus = {
   urls: [],
 };
 
+let targetUrl = '';
+
 export default function init(block) {
+  console.log(block);
     const crawlerDiv = document.createElement('div');
     crawlerDiv.innerHTML = `
     <form>
@@ -45,8 +48,13 @@ export default function init(block) {
         
         web.preventDefault();
         const url = web.target.url.value;
+        targetUrl = url;
         crawlerDiv.parentNode.replaceChildren(dotsection);
-        crawlStatus.urls = await main(url);
+        if (block.classList.contains('sitemap')) {
+          crawlStatus.urls = await mainSitemap(url);
+        } else {
+          await mainCrawler(url);
+        }
         crawlStatus.urls.forEach((url, index) => {
             const row = {
                 url,
@@ -86,7 +94,7 @@ export default function init(block) {
         const a = document.createElement('a');
         const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
         a.setAttribute('href', URL.createObjectURL(blob));
-        a.setAttribute('download', 'crawl_report.xlsx');
+        a.setAttribute('download', `${new URL(targetUrl).hostname}_crawler_report.xlsx`);
         a.click();
         downloadSection.parentNode.replaceChildren(crawlerDiv);
     }));
