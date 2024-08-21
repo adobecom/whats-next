@@ -12,6 +12,7 @@ export function printReport(pages) {
 }
 
 export function printBrokenLinks(brokenLinks) {
+    return brokenLinks;
     console.log("========== Broken Links ==========");
     for (const brokenLink of brokenLinks) {
         console.log(brokenLink);

@@ -11,7 +11,7 @@ var parentURL = null;
         console.log(`Skipping ${currentURL} as it is not part of the base domain but will check for broken links`);
         const resp = await fetch(currentURL);
         if (resp.status > 399) {
-            brokenLinksURLs.push(`${parentURL}:${currentURL}-${resp.status}`);
+            brokenLinksURLs.push(`${parentURL}#${currentURL}#${resp.status}`);
         } 
         return pages;
     }
@@ -30,7 +30,7 @@ var parentURL = null;
         const resp = await fetch(currentURL);
         if (resp.status > 399) {
             console.log(`1 - Error crawling ${currentURL}: ${resp.status}`);
-            brokenLinksURLs.push(`${parentURL}:${currentURL}-${resp.status}`);
+            brokenLinksURLs.push(`${parentURL}#${currentURL}#${resp.status}`);
             return pages;
         }
 
