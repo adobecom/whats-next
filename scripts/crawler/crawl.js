@@ -112,10 +112,3 @@ function normalizeURL(urlString) {
 export  function returnbrokenLinksURLs() {
     return brokenLinksURLs;
 }
-
-// module.exports = {
-//     normalizeURL,
-//     getURLsfromHTML,
-//     crawlPage,
-//     returnbrokenLinksURLs
-// }

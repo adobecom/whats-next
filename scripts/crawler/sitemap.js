@@ -111,8 +111,3 @@ export async function loadSitemap(sitemapURL, origin, host, config = {}) {
     }
     return [...new Set(urls)];
   }
-  
-//   module.exports =  {
-//     loadSitemap,
-//     loadURLsFromRobots,
-//   };
