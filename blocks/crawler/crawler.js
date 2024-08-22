@@ -1,5 +1,5 @@
 import { mainSitemap, mainCrawler } from '../../scripts/crawler/main.js';
-import { div, button, label, h2 } from '../../scripts/dom-helpers.js';
+import { div, button, label, h3, p, a } from '../../scripts/dom-helpers.js';
 import { returnbrokenLinksURLs } from '../../scripts/crawler/crawl.js';
 import { printBrokenLinks } from '../../scripts/crawler/report.js';
 
@@ -100,7 +100,7 @@ export default function init(block) {
         console.log(parentURL, actualURL, statusCode);
 
         //Broken Links Div
-        const brokenLinksDiv = div({ class: 'brokenLinksDiv' }, label({ class: 'parent-url' }, h2(`Parent URL: ${parentURL}`)), label({ class: 'actual-url' }, h2(`URL: ${actualURL}`)), label({ class: 'status-code' }, h2(`Status Code: ${statusCode}`)));
+        const brokenLinksDiv = div({ class: 'brokenLinksDiv' }, label({ class: 'parent-url' }, h3('Parent URL:  ', a({ href: `${parentURL}`, target: '_blank' }, `${parentURL}`))), p({ class: 'actual-url' }, 'Broken Link:  ', a({ href: `${actualURL}`, target: '_blank' }, `${actualURL}`)), p({ class: 'status-code' }, `Status Code: ${statusCode}`));
         brokenLinksMainDiv.appendChild(brokenLinksDiv);
       });
       crawlStatus.urls.forEach((url, index) => {
