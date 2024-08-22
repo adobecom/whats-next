@@ -10,9 +10,11 @@ export default async function init(block) {
     block.appendChild(pageSpeedDiv);
 
 
-    // window.placeholders = window.placeholders || {};
-    // const TRANSLATION_KEY = 'crawlerreport';
-  
-    // await window.placeholders;
-    // console.log(window.placeholders[TRANSLATION_KEY]);
+    pageSpeedDiv.querySelector('form').addEventListener('submit', async (web) => {
+        web.preventDefault();
+        window.placeholders = window.placeholders || {};
+        const TRANSLATION_KEY = 'crawlerreport';
+        await window.placeholders;
+        console.log(window.placeholders[TRANSLATION_KEY]);
+    });
 }
