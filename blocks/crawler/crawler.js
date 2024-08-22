@@ -80,6 +80,14 @@ export default function init(block) {
       crawlerDiv.parentNode.replaceChildren(dotsection);
       crawlStatus.rows = [];
       crawlStatus.urls = await mainCrawler(url);
+
+      //Outputting the data into windows.placeholders
+      window.placeholders = window.placeholders || {};
+      const TRANSLATION_KEY = 'crawlerreport';
+      window.placeholders[TRANSLATION_KEY] = crawlStatus.urls;
+      await window.placeholders[`${TRANSLATION_KEY}-loaded`];
+      console.log(window.placeholders[TRANSLATION_KEY]);
+
       crawlStatus.urls.forEach((url, index) => {
         const row = {
           url,
