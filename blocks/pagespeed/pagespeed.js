@@ -1,4 +1,4 @@
-import { div, button, label, h3, p, a } from '../../scripts/dom-helpers.js';
+import { div, button, label, h3, p, a, span } from '../../scripts/dom-helpers.js';
 
 export class inputObj {
     constructor(Company_Name, Crawled_URL) {
@@ -71,17 +71,68 @@ function setUpQueryDesktop(site) {
     return query;
 }
 
-async function displayLHS(data, block){
+async function displayLHS(data, block) {
     console.log(data.Crawled_URL);
-    const lhsDiv = div({ class: 'lhsDiv'}, label({ class: 'lhs-label' }, h3(a({ href: `${data.Crawled_URL}`, target: '_blank' }, `${data.Crawled_URL}`))), div({ class: 'lhsDivParent'},dotsection));
+    const lhsDiv = div({ class: 'lhsDiv' }, label({ class: 'lhs-label' }, h3(a({ href: `${data.Crawled_URL}`, target: '_blank' }, `${data.Crawled_URL}`))), div({ class: 'lhsDivParent' }, dotsection));
     block.appendChild(lhsDiv);
-    const result = await lhsrun(data.Crawled_URL,data.Company_Name);
+    const result = await lhsrun(data.Crawled_URL, data.Company_Name);
     const targetURL = result.split("#")[1];
     const mobileScore = result.split("#")[2];
     const desktopScore = result.split("#")[3];
 
     // const lhsDiv = div({ class: 'lhsDivMain'}, label({ class: 'lhs-label' }, h3(a({ href: `${targetURL}`, target: '_blank' }, `${targetURL}`))), div({ class: 'lhsDivRight'},div({ class: 'lhs-mobile' }, `${mobileScore}`), div({ class: 'lhs-desktop' }, `${desktopScore}`)));
-    const toBeReplacedDiv = div({ class: 'lhsDivChild'}, div({ class: 'lhs-mobile' }, `${mobileScore}`), div({ class: 'lhs-desktop' }, `${desktopScore}`));
+    const toBeReplacedDiv = div({ class: 'lhsDivChild' }, div({ class: 'lhs-mobile' }, span(`${mobileScore}`)), div({ class: 'lhs-desktop' }, span(`${desktopScore}`)));
+
+    //Creating of Perf section
+    const perfssection = toBeReplacedDiv.querySelectorAll('div.lhsDivChild > div');
+    perfssection.forEach((element) => {
+        const cirsection = div({ class: 'circlesection' });
+        const outcircle = div();
+        const incircle = div();
+        outcircle.append(incircle);
+        cirsection.append(outcircle);
+        element.append(cirsection);
+
+        element.querySelectorAll('.circlesection > div').forEach((outerelement) => {
+            setTimeout(function () { outerelement.classList.add('outercircle'); }, 1000);
+            outerelement.querySelectorAll('div').forEach((innerelement) => {
+                setTimeout(function () { innerelement.classList.add('innercircle'); }, 1000);
+                setTimeout(function () {
+                    let progressStartValue = 0;
+                    const progressEndValue = element.querySelector('span').textContent;
+                    const speed = 20;
+                    const progress = setInterval(() => {
+                        progressStartValue++;
+                        if (progressEndValue == 0) { innerelement.textContent = 0; }
+                        innerelement.textContent = progressEndValue == 0 ? 0 : `${progressStartValue}`;
+                        if (progressEndValue > 89) {
+                            outerelement.style.background = `conic-gradient(#00cc66 ${progressStartValue * 3.6}deg, #d7f5d5 0deg)`;
+                        }
+                        else if (progressEndValue > 49 && progressEndValue < 90) {
+                            outerelement.style.background = `conic-gradient(#ffa400 ${progressStartValue * 3.6}deg, #f2eadc 0deg)`;
+                            innerelement.style.color = '#91600a';
+                            innerelement.style.backgroundColor = '#f2eadc';
+                        }
+                        else if (progressEndValue < 50 && progressEndValue > 0) {
+                            outerelement.style.background = `conic-gradient(#f33 ${progressStartValue * 3.6}deg, #f7e3e1 0deg)`;
+                            innerelement.style.color = '#8a160c';
+                            innerelement.style.backgroundColor = '#f7e3e1';
+                        }
+                        else {
+                            innerelement.style.color = '#8a160c';
+                            innerelement.style.backgroundColor = '#f7e3e1';
+                            outerelement.style.background = '#f7e3e1';
+                        }
+                        if (progressStartValue == progressEndValue) {
+                            clearInterval(progress);
+                        }
+                    }, speed);
+                }, 1000);
+            });
+        });
+
+    });
+
     lhsDiv.querySelector('.lhsDivParent').replaceChildren(toBeReplacedDiv);
     block.appendChild(lhsDiv);
 }

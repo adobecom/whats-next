@@ -63,3 +63,48 @@
 .dotsectionclass .dot:nth-child(3) {
     animation: jumping 0.8s 0.3s ease-in infinite;
 }
+
+.pagespeed .lhsDiv .lhsDivParent .lhsDivChild span{
+  display: none;
+}
+
+.pagespeed .lhsDiv .lhsDivParent .lhsDivChild .circlesection {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  position: relative;
+  margin-top: 50px;
+}
+
+.pagespeed .lhsDiv .lhsDivParent .lhsDivChild .outercircle {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 0.5rem;
+  border-radius: 50%;
+  background: #d7f5d5;
+  overflow: hidden;
+  transition: opacity 2s;
+  opacity: 1;
+}
+
+.pagespeed .lhsDiv .lhsDivParent .lhsDivChild .innercircle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 150px;
+  height: 150px;
+  background: #d7f5d5;
+  border-radius: 50%;
+  font-size: 3em;
+  font-weight: bold;
+  color: #0b4a07;
+  transition: opacity 2s;
+  opacity: 1;
+}
+
