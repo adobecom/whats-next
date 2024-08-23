@@ -51,13 +51,9 @@ export async function mainSitemap(url) {
     if (resp.status === 200) {
         console.log(`Found robots.txt for ${baseURL}, hence getting URL's from Sitemap`);
         crawlStatus.urls = await loadURLsFromRobots(newBaseURL, newBaseURL);
-        if (crawlStatus.urls.length === 0) {
-            console.log("Issue accessing sitemap, hence crawling the base URL");
-            await mainCrawler(baseURL);
-        }
         return crawlStatus.urls;
     } else {
-        await mainCrawler(baseURL);
+        return crawlStatus.urls;
     }
 
 }

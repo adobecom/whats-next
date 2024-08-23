@@ -18,8 +18,8 @@ let crawlStatus = {
 let targetUrl = '';
 
 export default function init(block) {
-  console.log(block);
-  const crawlerDiv = document.createElement('div');
+  // Crawler Div
+  const crawlerDiv = div();
   crawlerDiv.innerHTML = `
     <form>
         <label for="url">Enter a URL:</label>
@@ -27,6 +27,16 @@ export default function init(block) {
         <input type="submit">
     </form>
     `;
+
+  // Error Div
+  const errorDiv = div({ class: 'error' });
+  errorDiv.innerHTML = `
+  <form>
+        <label for="url">There is an issue accessing Robots.txt or Sitemap</label>
+        <input type="submit" value="Go Back">
+    </form>
+  `;
+
 
   // Dot Section
   const dotsection = div({ class: 'dotsectionclass' });
@@ -67,13 +77,17 @@ export default function init(block) {
       crawlerDiv.parentNode.replaceChildren(dotsection);
       crawlStatus.rows = [];
       crawlStatus.urls = await mainSitemap(url);
+      if (crawlStatus.urls.length === 0) {
+        console.log("Issue accessing sitemap, hence crawling the base URL");
+        dotsection.parentNode.replaceChildren(errorDiv);
+        return;
+      }
       crawlStatus.urls.forEach((url, index) => {
         const row = {
           url,
         };
         crawlStatus.rows.push(row);
       });
-      console.log(crawlStatus.urls);
       crawlerLabel.innerHTML = `${crawlStatus.urls.length} URLs detected`;
       dotsection.parentNode.replaceChildren(downloadSection);
     } else if (block.classList.contains('google')) {
@@ -86,7 +100,6 @@ export default function init(block) {
       const TRANSLATION_KEY = 'crawlerreport';
       window.placeholders[TRANSLATION_KEY] = crawlStatus.urls;
       await window.placeholders[`${TRANSLATION_KEY}-loaded`];
-      console.log(window.placeholders[TRANSLATION_KEY]);
 
       crawlStatus.urls.forEach((url, index) => {
         const row = {
@@ -94,7 +107,6 @@ export default function init(block) {
         };
         crawlStatus.rows.push(row);
       });
-      console.log(crawlStatus.urls);
       crawlerLabel.innerHTML = `${crawlStatus.urls.length} URLs detected`;
       dotsection.parentNode.replaceChildren(downloadSection);
     } else if (block.classList.contains('broken-links')) {
@@ -105,7 +117,6 @@ export default function init(block) {
         let parentURL = url.split('#')[0];
         let actualURL = url.split('#')[1];
         let statusCode = url.split('#')[2];
-        console.log(parentURL, actualURL, statusCode);
 
         //Broken Links Div
         const brokenLinksDiv = div({ class: 'brokenLinksDiv' }, label({ class: 'parent-url' }, h3('Parent URL:  ', a({ href: `${parentURL}`, target: '_blank' }, `${parentURL}`))), p({ class: 'actual-url' }, 'Broken Link:  ', a({ href: `${actualURL}`, target: '_blank' }, `${actualURL}`)), p({ class: 'status-code' }, `Status Code: ${statusCode}`));
@@ -117,11 +128,16 @@ export default function init(block) {
         };
         crawlStatus.rows.push(row);
       });
-      console.log(crawlStatus.urls);
       crawlerLabel.innerHTML = `${crawlStatus.urls.length} URLs detected`;
       crawlerDiv.parentNode.replaceChildren(downloadSectionBL);
       downloadSectionBL.after(brokenLinksMainDiv);
     }
+  });
+
+  //Go Back Click event
+  errorDiv.querySelector('form').addEventListener('submit', (event) => {
+    event.preventDefault();
+    errorDiv.parentNode.replaceChildren(crawlerDiv);
   });
 
     //Download Report Button click event

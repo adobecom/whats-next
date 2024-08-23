@@ -56,6 +56,12 @@
     width: 25vw;
 }
 
+.crawler .error form label {
+    color: red;
+    text-shadow: 1px 1px black;
+    font-size: var(--type-heading-xl-size);
+}
+
 .crawler .crawl-downloadCrawlReport {
     display: flex;
     flex-direction: row;
