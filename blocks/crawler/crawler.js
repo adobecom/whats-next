@@ -82,6 +82,14 @@ export default function init(block) {
         dotsection.parentNode.replaceChildren(errorDiv);
         return;
       }
+
+      //Outputting the data into windows.placeholders for sitemap
+      window.placeholders = window.placeholders || {};
+      const TRANSLATION_KEY = 'sitemapreport';
+      window.placeholders[TRANSLATION_KEY] = crawlStatus.urls;
+      await window.placeholders[`${TRANSLATION_KEY}-loaded`];
+      console.log(window.placeholders[TRANSLATION_KEY]);
+
       crawlStatus.urls.forEach((url, index) => {
         const row = {
           url,
@@ -95,7 +103,7 @@ export default function init(block) {
       crawlStatus.rows = [];
       crawlStatus.urls = await mainCrawler(url);
 
-      //Outputting the data into windows.placeholders
+      //Outputting the data into windows.placeholders for google crawling
       window.placeholders = window.placeholders || {};
       const TRANSLATION_KEY = 'crawlerreport';
       window.placeholders[TRANSLATION_KEY] = crawlStatus.urls;

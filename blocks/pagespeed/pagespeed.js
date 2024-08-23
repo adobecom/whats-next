@@ -150,10 +150,16 @@ let raw_data = [];
 let inputObject;
 
 export default async function init(block) {
-  const pageSpeedDiv = div();
+  const pageSpeedDiv = div({ class: 'pageSpeedDiv' });
   pageSpeedDiv.innerHTML = `
-    <form>
-        <input type="submit" value="Analyse">
+    <form class='crawledPages'>
+        <input type="submit" value="Crawled Pages">
+    </form>
+    <form class='sitemapPages'>
+        <input type="submit" value="SiteMap Pages">
+    </form>
+    <form class='downloadReport'>
+        <input type="submit" value="Download Performance Report">
     </form>
     `;
     block.appendChild(pageSpeedDiv);
@@ -162,12 +168,13 @@ export default async function init(block) {
     lhsHeadingDiv.classList.add('lhsHeadingDiv');
     block.appendChild(lhsHeadingDiv);
 
-    //Preparing for array of Objects to be fed for LHS tracking
-    pageSpeedDiv.querySelector('form').addEventListener('submit', async (web) => {
+    //Preparing for array of Objects for crawledPages to be fed for LHS tracking
+    pageSpeedDiv.querySelector('form.crawledPages').addEventListener('submit', async (web) => {
         web.preventDefault();
         window.placeholders = window.placeholders || {};
         const TRANSLATION_KEY = 'crawlerreport';
         await window.placeholders;
+        raw_data = [];
         // console.log(window.placeholders[TRANSLATION_KEY]);
         window.placeholders[TRANSLATION_KEY].forEach((element) => {
             element.forEach((url, index) => {
@@ -179,6 +186,27 @@ export default async function init(block) {
                     inputObject = new inputObj('AMS', url);
                 }
             });
+            raw_data.push(inputObject);
+        });
+
+        //LHS Tracking
+        mainfunction(block);
+    });
+
+    //Preparing for array of Objects for sitemapPages to be fed for LHS tracking
+    pageSpeedDiv.querySelector('form.sitemapPages').addEventListener('submit', async (web) => {
+        web.preventDefault();
+        window.placeholders = window.placeholders || {};
+        const TRANSLATION_KEY = 'sitemapreport';
+        await window.placeholders;
+        raw_data = [];
+        // console.log(window.placeholders[TRANSLATION_KEY]);
+        window.placeholders[TRANSLATION_KEY].slice(0, 50).forEach((url) => {
+            const urlPattern = /^http/;
+            if (!urlPattern.test(url)) {
+                url = 'https://' + url;
+            }
+            inputObject = new inputObj('AMS', url);
             raw_data.push(inputObject);
         });
 

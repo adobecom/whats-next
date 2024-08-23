@@ -3,6 +3,13 @@
     justify-content: center;
 }
 
+.pagespeed .pageSpeedDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5vw;
+}
+
 .pagespeed form input[type=submit] {
     border-color: var(--text-color);
     color: var(--text-color);
