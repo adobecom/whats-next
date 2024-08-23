@@ -7,6 +7,15 @@ export class inputObj {
     }
 }
 
+  // Dot Section
+  const dotsection = div({ class: 'dotsectionclass' });
+  const firstdot = div({ class: 'dot' });
+  const seconddot = div({ class: 'dot' });
+  const thirddot = div({ class: 'dot' });
+  dotsection.appendChild(firstdot);
+  dotsection.appendChild(seconddot);
+  dotsection.appendChild(thirddot);
+
 async function lhsrun(site, customer) {
     const terms = [".json", "?", "granite/core", "404.html", "healthcheck", "jpg", "css", "svg", "*"];
     const result1 = terms.some(term => site.includes(term));
@@ -17,8 +26,9 @@ async function lhsrun(site, customer) {
         const urlDesktop = setUpQueryDesktop(site);
         const responseMobile = await fetchURL(urlMobile);
         const responseDesktop = await fetchURL(urlDesktop);
-        (responseMobile.error) ? ((conditions.some(el => responseMobile.error.message.includes(el))) ? lhsrun(site, customer) : console.log(customer + "#" + site + "#" + " LHS is erroring with " + responseMobile.error.message)) : console.log(customer + "#" + site + "#" + (Math.round(responseMobile.lighthouseResult.categories.performance.score * 100) + "%") + "#" + (Math.round(responseDesktop.lighthouseResult.categories.performance.score * 100) + "%"));
-        // (responseMobile.error) ? ((conditions.some(el => responseMobile.error.message.includes(el))) ? lhsrun(site, customer) : console.log(customer + "#" + site + "#" + " LHS is erroring with " + responseMobile.error.message)) : console.log(customer + "#" + site + "#" + (Math.round(responseMobile.lighthouseResult.categories.performance.score * 100) + "%"));
+        // (responseMobile.error) ? ((conditions.some(el => responseMobile.error.message.includes(el))) ? lhsrun(site, customer) : console.log(customer + "#" + site + "#" + " LHS is erroring with " + responseMobile.error.message)) : console.log(customer + "#" + site + "#" + (Math.round(responseMobile.lighthouseResult.categories.performance.score * 100) + "%") + "#" + (Math.round(responseDesktop.lighthouseResult.categories.performance.score * 100) + "%"));
+        const result = (responseMobile.error) ? ((conditions.some(el => responseMobile.error.message.includes(el))) ? lhsrun(site, customer) : (customer + "#" + site + "#" + " LHS is erroring with " + responseMobile.error.message)) : (customer + "#" + site + "#" + (Math.round(responseMobile.lighthouseResult.categories.performance.score * 100)) + "#" + (Math.round(responseDesktop.lighthouseResult.categories.performance.score * 100)));
+        return result;
     }
 }
 
@@ -61,10 +71,25 @@ function setUpQueryDesktop(site) {
     return query;
 }
 
-async function mainfunction() {
+async function displayLHS(data, block){
+    console.log(data.Crawled_URL);
+    const lhsDiv = div({ class: 'lhsDiv'}, label({ class: 'lhs-label' }, h3(a({ href: `${data.Crawled_URL}`, target: '_blank' }, `${data.Crawled_URL}`))), div({ class: 'lhsDivParent'},dotsection));
+    block.appendChild(lhsDiv);
+    const result = await lhsrun(data.Crawled_URL,data.Company_Name);
+    const targetURL = result.split("#")[1];
+    const mobileScore = result.split("#")[2];
+    const desktopScore = result.split("#")[3];
+
+    // const lhsDiv = div({ class: 'lhsDivMain'}, label({ class: 'lhs-label' }, h3(a({ href: `${targetURL}`, target: '_blank' }, `${targetURL}`))), div({ class: 'lhsDivRight'},div({ class: 'lhs-mobile' }, `${mobileScore}`), div({ class: 'lhs-desktop' }, `${desktopScore}`)));
+    const toBeReplacedDiv = div({ class: 'lhsDivChild'}, div({ class: 'lhs-mobile' }, `${mobileScore}`), div({ class: 'lhs-desktop' }, `${desktopScore}`));
+    lhsDiv.querySelector('.lhsDivParent').replaceChildren(toBeReplacedDiv);
+    block.appendChild(lhsDiv);
+}
+
+async function mainfunction(block) {
     for (let i = 0; i <= (raw_data.length-1); i++) {
         if ((!raw_data[i].Company_Name) && (!raw_data[i].Crawled_URL)) { console.log("\n"); continue; }
-        (raw_data[i].Crawled_URL) ? await lhsrun(raw_data[i].Crawled_URL,raw_data[i].Company_Name) : console.log(raw_data[i].Company_Name+"##No Crawled_URL");
+        (raw_data[i].Crawled_URL) ? await displayLHS(raw_data[i], block) : console.log(raw_data[i].Company_Name+"##No Crawled_URL");
     }
 }
 
@@ -86,7 +111,7 @@ export default async function init(block) {
         window.placeholders = window.placeholders || {};
         const TRANSLATION_KEY = 'crawlerreport';
         await window.placeholders;
-        console.log(window.placeholders[TRANSLATION_KEY]);
+        // console.log(window.placeholders[TRANSLATION_KEY]);
         window.placeholders[TRANSLATION_KEY].forEach((element) => {
             element.forEach((url, index) => {
                 if (index === 0) {
@@ -99,9 +124,8 @@ export default async function init(block) {
             });
             raw_data.push(inputObject);
         });
-        console.log(raw_data);
 
         //LHS Tracking
-        mainfunction();
+        mainfunction(block);
     });
 }
