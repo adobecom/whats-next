@@ -94,9 +94,9 @@ async function displayLHS(data, block) {
         element.append(cirsection);
 
         element.querySelectorAll('.circlesection > div').forEach((outerelement) => {
-            setTimeout(function () { outerelement.classList.add('outercircle'); }, 1000);
+            setTimeout(function () { outerelement.classList.add('outercircle'); }, 500);
             outerelement.querySelectorAll('div').forEach((innerelement) => {
-                setTimeout(function () { innerelement.classList.add('innercircle'); }, 1000);
+                setTimeout(function () { innerelement.classList.add('innercircle'); }, 500);
                 setTimeout(function () {
                     let progressStartValue = 0;
                     const progressEndValue = element.querySelector('span').textContent;
@@ -127,7 +127,7 @@ async function displayLHS(data, block) {
                             clearInterval(progress);
                         }
                     }, speed);
-                }, 1000);
+                }, 500);
             });
         });
 
