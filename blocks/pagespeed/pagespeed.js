@@ -1,4 +1,4 @@
-import { div, button, label, h3, p, a, span } from '../../scripts/dom-helpers.js';
+import { div, button, label, h3, p, a, span, h1 } from '../../scripts/dom-helpers.js';
 
 export class inputObj {
     constructor(Company_Name, Crawled_URL) {
@@ -157,6 +157,10 @@ export default async function init(block) {
     </form>
     `;
     block.appendChild(pageSpeedDiv);
+
+    const lhsHeadingDiv = div({ class: 'lhsDiv' }, label({ class: 'lhs-label' }, h1('Most Relevant URLs')), div({ class: 'lhsDivParent' }, div({ class: 'lhsHeadingDivChild' }, div({ class: 'lhs-mobile' }, h1('Mobile')), div({ class: 'lhs-desktop' }, h1('Desktop')))));
+    lhsHeadingDiv.classList.add('lhsHeadingDiv');
+    block.appendChild(lhsHeadingDiv);
 
     //Preparing for array of Objects to be fed for LHS tracking
     pageSpeedDiv.querySelector('form').addEventListener('submit', async (web) => {

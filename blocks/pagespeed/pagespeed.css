@@ -67,6 +67,9 @@
 .pagespeed .lhsDiv {
   align-items: center;
 }
+.pagespeed .lhsHeadingDiv {
+  margin-top: 10vh;
+}
 
 .pagespeed .lhsDiv .lhs-label {
   flex-basis: 50%;
@@ -78,8 +81,23 @@
   left: 20vw;
 }
 
+.pagespeed .lhsDiv .lhs-label h1 {
+  display: flex;
+  position: relative;
+  left: 20vw;
+  text-shadow: 1px 1px black;
+}
+
+.pagespeed .lhsDiv .lhsDivParent h1 {
+  text-shadow: 1px 1px black;
+}
+
 .pagespeed .lhsDiv .lhsDivParent {
   flex-basis: 50%;
+}
+
+.pagespeed .lhsDiv .lhsDivParent .lhsHeadingDivChild {
+  gap: 6vw;
 }
 
 .pagespeed .lhsDiv .lhsDivParent .lhsDivChild span{
