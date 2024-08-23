@@ -71,6 +71,8 @@ function setUpQueryDesktop(site) {
     return query;
 }
 
+let arrayReport = [];
+
 async function displayLHS(data, block) {
     console.log(data.Crawled_URL);
     const lhsDiv = div({ class: 'lhsDiv' }, label({ class: 'lhs-label' }, h3(a({ href: `${data.Crawled_URL}`, target: '_blank' }, `${data.Crawled_URL}`))), div({ class: 'lhsDivParent' }, dotsection));
@@ -80,6 +82,9 @@ async function displayLHS(data, block) {
         block.removeChild(lhsDiv);
         return;
     }
+
+    arrayReport.push(result);
+
     const mobileScore = result.split("#")[2];
     const desktopScore = result.split("#")[3];
 
@@ -140,6 +145,7 @@ async function displayLHS(data, block) {
 }
 
 async function mainfunction(block) {
+    arrayReport = []
     for (let i = 0; i <= (raw_data.length-1); i++) {
         if ((!raw_data[i].Company_Name) && (!raw_data[i].Crawled_URL)) { console.log("\n"); continue; }
         (raw_data[i].Crawled_URL) ? await displayLHS(raw_data[i], block) : console.log(raw_data[i].Company_Name+"##No Crawled_URL");
@@ -201,7 +207,7 @@ export default async function init(block) {
         await window.placeholders;
         raw_data = [];
         // console.log(window.placeholders[TRANSLATION_KEY]);
-        window.placeholders[TRANSLATION_KEY].slice(0, 50).forEach((url) => {
+        window.placeholders[TRANSLATION_KEY].slice(0, 5).forEach((url) => {
             const urlPattern = /^http/;
             if (!urlPattern.test(url)) {
                 url = 'https://' + url;
@@ -213,4 +219,11 @@ export default async function init(block) {
         //LHS Tracking
         mainfunction(block);
     });
+
+    pageSpeedDiv.querySelector('form.downloadReport').addEventListener('submit', async (web) => {
+        web.preventDefault();
+        console.log(arrayReport);
+    })
+
+
 }
