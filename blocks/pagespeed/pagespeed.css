@@ -73,18 +73,18 @@
 
 .pagespeed .lhsDiv .lhs-label {
   flex-basis: 50%;
+  display: flex;
+  justify-content: center;
 }
 
 .pagespeed .lhsDiv .lhs-label h3 {
   display: flex;
   position: relative;
-  left: 20vw;
 }
 
 .pagespeed .lhsDiv .lhs-label h1 {
   display: flex;
   position: relative;
-  left: 20vw;
   text-shadow: 1px 1px black;
 }
 
