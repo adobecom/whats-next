@@ -76,11 +76,13 @@ async function displayLHS(data, block) {
     const lhsDiv = div({ class: 'lhsDiv' }, label({ class: 'lhs-label' }, h3(a({ href: `${data.Crawled_URL}`, target: '_blank' }, `${data.Crawled_URL}`))), div({ class: 'lhsDivParent' }, dotsection));
     block.appendChild(lhsDiv);
     const result = await lhsrun(data.Crawled_URL, data.Company_Name);
-    const targetURL = result.split("#")[1];
+    if (result.includes("LHS is erroring")) {
+        block.removeChild(lhsDiv);
+        return;
+    }
     const mobileScore = result.split("#")[2];
     const desktopScore = result.split("#")[3];
 
-    // const lhsDiv = div({ class: 'lhsDivMain'}, label({ class: 'lhs-label' }, h3(a({ href: `${targetURL}`, target: '_blank' }, `${targetURL}`))), div({ class: 'lhsDivRight'},div({ class: 'lhs-mobile' }, `${mobileScore}`), div({ class: 'lhs-desktop' }, `${desktopScore}`)));
     const toBeReplacedDiv = div({ class: 'lhsDivChild' }, div({ class: 'lhs-mobile' }, span(`${mobileScore}`)), div({ class: 'lhs-desktop' }, span(`${desktopScore}`)));
 
     //Creating of Perf section
