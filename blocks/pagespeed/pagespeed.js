@@ -179,6 +179,7 @@ export default async function init(block) {
 
     const lhsHeadingDiv = div({ class: 'lhsDiv' }, label({ class: 'lhs-label' }, h1('Most Relevant URLs')), div({ class: 'lhsDivParent' }, div({ class: 'lhsHeadingDivChild' }, div({ class: 'lhs-mobile' }, h1('Mobile')), div({ class: 'lhs-desktop' }, h1('Desktop')))));
     lhsHeadingDiv.classList.add('lhsHeadingDiv');
+    lhsHeadingDiv.querySelector('label').classList.add('lhs-heading');
     block.appendChild(lhsHeadingDiv);
 
     //Preparing for array of Objects for crawledPages to be fed for LHS tracking
@@ -235,9 +236,12 @@ export default async function init(block) {
         web.preventDefault();
         console.log(arrayReport);
 
-        arrayReport.forEach((url, index) => {
+        arrayReport.forEach((data) => {
+            let url = data.split("#")[1];
+            let mobileScore = data.split("#")[2];
+            let desktopScore = data.split("#")[3];
             const row = {
-              url,
+              url,mobileScore,desktopScore,
             };
             crawlStatus.rows.push(row);
           });
@@ -245,24 +249,17 @@ export default async function init(block) {
         const workbook = new ExcelJS.Workbook();
         const worksheet = workbook.addWorksheet('Sheet 1');
     
-        let headers = ['URL'];
+        let headers = ['URL', 'Mobile Score', 'Desktop Score'];
     
         worksheet.addRows([
           headers,
         ].concat(crawlStatus.rows.map(({
           // eslint-disable-next-line max-len
           url,
-          status,
-          redirect,
-          nbLinks,
-          nbLinksAlreadyProcessed,
-          nbLinksExternalHost,
-          nbLinksToFollow,
-          linksToFollow,
-          nbLinksExcluded,
-          linksExcluded,
+          mobileScore,
+          desktopScore,
         }) => {
-          return [url];
+          return [url, mobileScore, desktopScore];
         })));
         const buffer = await workbook.xlsx.writeBuffer();
         const a = document.createElement('a');

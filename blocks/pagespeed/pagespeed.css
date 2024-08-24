@@ -73,6 +73,7 @@
 
 .pagespeed .lhsDiv {
   align-items: center;
+  padding: 50px;
 }
 .pagespeed .lhsHeadingDiv {
   margin-top: 10vh;
@@ -82,7 +83,14 @@
   flex-basis: 50%;
   display: flex;
   justify-content: center;
+  padding: 50px;
 }
+
+.pagespeed .lhsDiv .lhs-label:not(.lhs-heading) {
+  border-right: 1px solid #000;
+  /* background-color: #F8F8F8; */
+}
+
 
 .pagespeed .lhsDiv .lhs-label h3 {
   display: flex;

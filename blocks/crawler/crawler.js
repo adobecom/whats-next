@@ -88,7 +88,6 @@ export default function init(block) {
       const TRANSLATION_KEY = 'sitemapreport';
       window.placeholders[TRANSLATION_KEY] = crawlStatus.urls;
       await window.placeholders[`${TRANSLATION_KEY}-loaded`];
-      console.log(window.placeholders[TRANSLATION_KEY]);
 
       crawlStatus.urls.forEach((url, index) => {
         const row = {
