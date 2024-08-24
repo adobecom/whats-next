@@ -7,6 +7,12 @@ export class inputObj {
     }
 }
 
+let crawlStatus = {
+    crawled: 0,
+    rows: [],
+    urls: [],
+  };
+
   // Dot Section
   const dotsection = div({ class: 'dotsectionclass' });
   const firstdot = div({ class: 'dot' });
@@ -154,6 +160,7 @@ async function mainfunction(block) {
 
 let raw_data = [];
 let inputObject;
+let targetUrl = '';
 
 export default async function init(block) {
   const pageSpeedDiv = div({ class: 'pageSpeedDiv' });
@@ -181,6 +188,7 @@ export default async function init(block) {
         const TRANSLATION_KEY = 'crawlerreport';
         await window.placeholders;
         raw_data = [];
+        targetUrl = '';
         // console.log(window.placeholders[TRANSLATION_KEY]);
         window.placeholders[TRANSLATION_KEY].forEach((element) => {
             element.forEach((url, index) => {
@@ -189,6 +197,7 @@ export default async function init(block) {
                     if (!urlPattern.test(url)) {
                         url = 'https://' + url;
                     }
+                    targetUrl = url;
                     inputObject = new inputObj('AMS', url);
                 }
             });
@@ -206,12 +215,14 @@ export default async function init(block) {
         const TRANSLATION_KEY = 'sitemapreport';
         await window.placeholders;
         raw_data = [];
+        targetUrl = '';
         // console.log(window.placeholders[TRANSLATION_KEY]);
-        window.placeholders[TRANSLATION_KEY].slice(0, 5).forEach((url) => {
+        window.placeholders[TRANSLATION_KEY].slice(0, 50).forEach((url) => {
             const urlPattern = /^http/;
             if (!urlPattern.test(url)) {
                 url = 'https://' + url;
             }
+            targetUrl = url;
             inputObject = new inputObj('AMS', url);
             raw_data.push(inputObject);
         });
@@ -223,7 +234,41 @@ export default async function init(block) {
     pageSpeedDiv.querySelector('form.downloadReport').addEventListener('submit', async (web) => {
         web.preventDefault();
         console.log(arrayReport);
+
+        arrayReport.forEach((url, index) => {
+            const row = {
+              url,
+            };
+            crawlStatus.rows.push(row);
+          });
+
+        const workbook = new ExcelJS.Workbook();
+        const worksheet = workbook.addWorksheet('Sheet 1');
+    
+        let headers = ['URL'];
+    
+        worksheet.addRows([
+          headers,
+        ].concat(crawlStatus.rows.map(({
+          // eslint-disable-next-line max-len
+          url,
+          status,
+          redirect,
+          nbLinks,
+          nbLinksAlreadyProcessed,
+          nbLinksExternalHost,
+          nbLinksToFollow,
+          linksToFollow,
+          nbLinksExcluded,
+          linksExcluded,
+        }) => {
+          return [url];
+        })));
+        const buffer = await workbook.xlsx.writeBuffer();
+        const a = document.createElement('a');
+        const blob = new Blob([buffer], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+        a.setAttribute('href', URL.createObjectURL(blob));
+        a.setAttribute('download', `${new URL(targetUrl).hostname}_performance_report.xlsx`);
+        a.click();
     })
-
-
 }
