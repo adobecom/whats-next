@@ -7,7 +7,7 @@ var parentURL = null;
 
     const baseURLObj = new URL(baseURL);
     const currentURLObj = new URL(currentURL);
-    if (baseURLObj.hostname !== currentURLObj.hostname) {
+    if ((baseURLObj.hostname.replace('www.', '') !== currentURLObj.hostname.replace('www.', ''))) {
         console.log(`Skipping ${currentURL} as it is not part of the base domain but will check for broken links`);
         const resp = await fetch(currentURL);
         if (resp.status == 404) {
