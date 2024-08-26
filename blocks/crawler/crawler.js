@@ -17,6 +17,12 @@ let crawlStatus = {
 
 let targetUrl = '';
 
+function normalizeUrl(url) {
+  const urlv1 = url.startsWith('http') ? url : `https://${url}`;
+  const urlv2 = new URL(urlv1).hostname;
+  return `https://${urlv2}`;
+}
+
 export default function init(block) {
   // Crawler Div
   const crawlerDiv = div();
@@ -70,7 +76,9 @@ export default function init(block) {
   crawlerDiv.querySelector('form').addEventListener('submit', async (web) => {
 
     web.preventDefault();
-    const url = web.target.url.value;
+    const rawurl = web.target.url.value;
+    const url = normalizeUrl(rawurl);
+    console.log(url);
     targetUrl = url;
     // crawlerDiv.parentNode.replaceChildren(dotsection);
     if (block.classList.contains('sitemap')) {
