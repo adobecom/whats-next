@@ -35,6 +35,10 @@
         min-height: 260px;
     }
 
+    .section .carousel.container picture img {
+        max-width: 70%;
+    }
+
     .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless):hover {
         -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
         box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
