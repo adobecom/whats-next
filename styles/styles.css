@@ -75,6 +75,10 @@
             opacity: 1;
         }
 
+        .marquee .text p:last-of-type {
+            margin-top: 3vh;
+        }
+
 
  @media (min-width: 77rem) {
 
