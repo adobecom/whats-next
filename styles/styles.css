@@ -75,7 +75,7 @@
             opacity: 1;
         }
 
-        .marquee .text p:last-of-type {
+        .marquee .text p:last-of-type:has(a) {
             margin-top: 3vh;
         }
 
