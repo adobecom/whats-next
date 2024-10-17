@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { setLibs, decorateArea, externalLinks } from './utils.js';
+import { setLibs, decorateArea, externalLinks, ScrolltoTop } from './utils.js';
 
 // Add project-wide style path here.
 const STYLES = '/styles/styles.css';
@@ -66,3 +66,6 @@ const miloLibs = setLibs(LIBS);
 
 //Links opening in new tab
 externalLinks();
+
+//Scroll to top
+ScrolltoTop();

@@ -7,54 +7,74 @@
  *
  */
 
-    .text.hotspot .con-button {
-    font-size: 25px;
-    padding: 15px 30px 18px;
-    border-radius: 25px;
-    }
+        .text.hotspot .con-button {
+            font-size: 25px;
+            padding: 15px 30px 18px;
+            border-radius: 25px;
+        }
+    
+        .text-block.join .foreground .cta-container>div {
+            flex-direction: column;
+        }
+    
+        .marquee.edsviaeds h1 {
+            font-size: 4vw;
+            line-height: 1.5;
+            font-weight: 100;
+            margin-top: 0;
+            letter-spacing: 1px;
+            color: transparent;
+            -webkit-text-stroke: 1px #fff;
+            /* background: url(https://main--aemms--adobe.hlx.page/qsr/Q1-2024/assets/media_198ae51….png); */
+            background: url(https://main--hackathon2023--meejain.hlx.page/assets/media_198ae51d59e74b881263e5cd361dce216b062e203.png);
+            -webkit-background-clip: text;
+            background-position: 0 0;
+        }
+    
+        .marquee.small.edsviaeds {
+            min-height: 260px;
+        }
+    
+        .section .carousel.container picture img {
+            max-width: 70%;
+        }
+    
+        .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless):hover {
+            -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
+            box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
+            background-color: rgba(255, 255, 255, .25);
+            padding: 10px;
+            border-radius: 10px;
+            transition: 2s;
+        }
+    
+        .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless) img {
+            border-radius: 10px;
+        }
+    
+        .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless) img:hover {
+            opacity: 0.6;
+        }
+    
+        div.top-arrow picture {
+            position: fixed;
+            right: 30px;
+            bottom: -10px;
+            width: 35px;
+            height: 35px;
+            cursor: pointer;
+            padding: 12px;
+            padding-left: 14px;
+            z-index: 10000000;
+            transition: all 0.5s ease-in-out;
+            opacity: 0;
+        }
+    
+        div.top-arrow picture.visible {
+            transform: translateY(-20px);
+            opacity: 1;
+        }
 
-    .text-block.join .foreground .cta-container > div {
-        flex-direction: column;
-    }
-
-    .marquee.edsviaeds h1 {
-        font-size: 4vw;
-        line-height: 1.5;
-        font-weight: 100;
-        margin-top: 0;
-        letter-spacing: 1px;
-        color: transparent;
-        -webkit-text-stroke: 1px #fff;
-        /* background: url(https://main--aemms--adobe.hlx.page/qsr/Q1-2024/assets/media_198ae51….png); */
-        background: url(https://main--hackathon2023--meejain.hlx.page/assets/media_198ae51d59e74b881263e5cd361dce216b062e203.png);
-        -webkit-background-clip: text;
-        background-position: 0 0;
-    }
-
-    .marquee.small.edsviaeds {
-        min-height: 260px;
-    }
-
-    .section .carousel.container picture img {
-        max-width: 70%;
-    }
-
-    .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless):hover {
-        -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
-        box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
-        background-color: rgba(255, 255, 255, .25);
-        padding: 10px;
-        border-radius: 10px;
-        transition: 2s;
-    }
-
-    .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless) img {
-        border-radius: 10px;
-    }
-
-    .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless) img:hover {
-        opacity: 0.6;
-    }
 
  @media (min-width: 77rem) {
 

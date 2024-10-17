@@ -75,3 +75,13 @@ export function externalLinks() {
       linkItem.setAttribute('target', '_blank');
   });
 }
+
+export function ScrolltoTop() {
+  const buttonScrolltoTop = document.querySelector('div.top-arrow picture');
+  console.log(buttonScrolltoTop);
+  buttonScrolltoTop.addEventListener('click', () => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); });
+  window.onscroll = function funcScroll() {
+    if (window.scrollY > 200) buttonScrolltoTop.classList.add('visible');
+    else buttonScrolltoTop.classList.remove('visible');
+  };
+}
