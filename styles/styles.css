@@ -141,10 +141,17 @@
        color: var(--primary);
     }
 
-    .section[class*="-up"] .media.cxe-names:not(.media-reverse-mobile, .qr-code) h3 {
+    .section[class*="-up"] .media.cxe-names:not(.media-reverse-mobile, .qr-code) h2 {
         font-size: x-large;
         color: var(--primary);
+        margin-bottom: 2rem;
+        text-decoration: underline;
      }
+
+    /* .section[class*="-up"] .media.cxe-names:not(.media-reverse-mobile, .qr-code) h3 {
+        font-size: x-large;
+        color: var(--primary);
+     } */
 
     .section[class*="-up"] .media.cxe-names:not(.media-reverse-mobile, .qr-code) .foreground .text {
         justify-content: center;
