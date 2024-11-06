@@ -156,6 +156,11 @@
     .section[class*="-up"] .media.cxe-names:not(.media-reverse-mobile, .qr-code) .foreground .text {
         justify-content: center;
     }
+
+    .section[class*="-up"] .media.initial:not(.media-reverse-mobile, .qr-code) .foreground .text {
+        text-align: center;
+
+    }
 }
     
     main .section .marquee .foreground .asset {
