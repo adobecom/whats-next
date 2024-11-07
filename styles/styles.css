@@ -176,3 +176,13 @@
         font-size: var(--type-heading-s-size);
         line-height: var(--type-heading-s-lh);
     }
+
+    .media.questions.cxe-names h3 {
+        font-size: var(--type-heading-xl-size);
+        margin-bottom: 1em;
+    }
+
+    .media.questions.cxe-names li {
+        font-size: var(--type-body-xl-size);
+        line-height: 1.6;
+    }
