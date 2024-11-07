@@ -180,6 +180,7 @@
     .media.questions.cxe-names h3 {
         font-size: var(--type-heading-xl-size);
         margin-bottom: 1em;
+        line-height: 1.2;
     }
 
     .media.questions.cxe-names li {
