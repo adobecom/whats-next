@@ -164,3 +164,9 @@
         font-size: var(--type-heading-s-size);
         line-height: var(--type-heading-s-lh);
     }
+
+@media (min-width: 1200px) {
+    .marquee, .marquee.split.long {
+        min-height: 700px;
+    }
+}
