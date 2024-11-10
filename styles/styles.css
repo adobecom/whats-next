@@ -36,7 +36,7 @@
         }
     
         .section .carousel.container picture img {
-            max-width: 70%;
+            max-width: 80%;
         }
     
         .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless):hover {
@@ -170,3 +170,18 @@
         min-height: 700px;
     }
 }
+
+.container .carousel-next {
+    right: 1rem;
+}
+
+@media (min-width: 900px) {
+    .carousel.container .carousel-next {
+        right: 2rem;
+    }
+
+    .carousel.container .carousel-previous {
+        left: 1rem;
+    }
+}
+
