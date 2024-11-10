@@ -38,6 +38,10 @@
         .section .carousel.container picture img {
             max-width: 80%;
         }
+
+        .marquee.funnel.split.one-third .foreground.container .text li {
+            margin-bottom: 2vh;
+        }
     
         .section[class*="-up"] .media:not(.media-reverse-mobile, .qr-code, .cxe-names, .useless):hover {
             -webkit-box-shadow: 0 0 1rem rgba(0, 0, 0, .6);
