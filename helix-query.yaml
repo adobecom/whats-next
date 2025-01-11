@@ -1,0 +1,74 @@
+indices:
+  site:
+    include:
+      - '/**'
+    exclude:
+      - '/drafts/**'
+      - '/fragments/**'
+      - '/calendar/**'
+      - '/tools/**'
+    target: /query-index.json
+    properties:
+      title:
+        select: h1
+        value: textContent(el)
+      description:
+        select: main > div p
+        value: words(textContent(el), 0, 50)
+      publishDate:
+        select: head > meta[name="publishdatetime"]
+        value: parseTimestamp(attribute(el, "content"), "ddd, DD MMM YYYY hh:mm:ss GMT")
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, 'content')
+      robots:
+        select: head > meta[name="robots"]
+        value: attribute(el, "content")
+  events:
+    include:
+      - /calendar/**
+    exclude:
+      - /calender
+      - /calendar/
+      - /calendar/county-commission-district-a/
+      - /calendar/county-commission-district-b/
+      - /calendar/featured-events/
+      - /calendar/county-commissioners/
+      - /calendar/county-commissioners-district-d/
+      - /calendar/county-commissioners-district-e/
+      - /calendar/county-commissioners-district-f/
+      - /calendar/county-commissioners-district-c/
+    target: /calendar/events.json
+    properties:
+      divisionname:
+        select: head > meta[name="divisionname"]
+        value: attribute(el, "content")
+      start:
+        select: head > meta[name="eventstart"]
+        value: attribute(el, "content")
+      end:
+        select: head > meta[name="eventstop"]
+        value: attribute(el, "content")
+      daysOfWeek:
+        select: head > meta[name="daysofweek"]
+        value: attribute(el, "content")
+      duration:
+        select: head > meta[name="duration"]
+        value: attribute(el, "content")
+      excludeDates:
+        select: head > meta[name="excludedates"]
+        value: attribute(el, "content")
+      title:
+        select: head > meta[name="featuredtitle"]
+        value: attribute(el, "content")
+      eventdescription:
+        select: head > meta[name="featureddescription"]
+        value: attribute(el, "content")
+      readMore:
+        select: head > meta[name="readmore"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[name="featuredimage"]
+        value: attribute(el, 'content')
+        
+
