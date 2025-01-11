@@ -65,7 +65,6 @@ export function externalLinks() {
   const links = document.querySelectorAll('a[href]');
   links.forEach((linkItem) => {
     const linkValue = linkItem.getAttribute('href');
-      console.log(linkValue);
       if (linkValue.includes('qsr/EDS')){
         linkItem.setAttribute('href', 'https://whatsnext--aemms--adobe.hlx.live' + linkValue);
       }
@@ -78,10 +77,13 @@ export function externalLinks() {
 
 export function ScrolltoTop() {
   const buttonScrolltoTop = document.querySelector('div.top-arrow picture');
-  console.log(buttonScrolltoTop);
   buttonScrolltoTop.addEventListener('click', () => { window.scrollTo({ top: 0, left: 0, behavior: 'smooth' }); });
   window.onscroll = function funcScroll() {
     if (window.scrollY > 200) buttonScrolltoTop.classList.add('visible');
     else buttonScrolltoTop.classList.remove('visible');
   };
+}
+
+export function normalizeString(str) {
+  return str.toLowerCase().replace(/ /g, '-');
 }
