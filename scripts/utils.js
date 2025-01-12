@@ -87,3 +87,45 @@ export function ScrolltoTop() {
 export function normalizeString(str) {
   return str.toLowerCase().replace(/ /g, '-');
 }
+
+export async function loadTemplate(doc, templateName) {
+  try {
+    const cssLoaded = new Promise((resolve) => {
+      loadCSS(
+        `${window.hlx.codeBasePath}/templates/${templateName}/${templateName}.css`,
+      )
+        .then(resolve)
+        .catch((err) => {
+          // eslint-disable-next-line no-console
+          console.error(
+            `failed to load css module for ${templateName}`,
+            err.target.href,
+          );
+          resolve();
+        });
+    });
+    const decorationComplete = new Promise((resolve) => {
+      (async () => {
+        try {
+          const mod = await import(
+            `../templates/${templateName}/${templateName}.js`
+          );
+          if (mod.default) {
+            await mod.default(doc);
+          }
+        } catch (error) {
+          // eslint-disable-next-line no-console
+          console.log(`failed to load module for ${templateName}`, error);
+        }
+        resolve();
+      })();
+    });
+
+    document.body.classList.add(`${templateName}-template`);
+
+    await Promise.all([cssLoaded, decorationComplete]);
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.log(`failed to load block ${templateName}`, error);
+  }
+}

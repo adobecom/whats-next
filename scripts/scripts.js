@@ -11,7 +11,7 @@
  * governing permissions and limitations under the License.
  */
 
-import { setLibs, decorateArea, externalLinks, ScrolltoTop } from './utils.js';
+import { setLibs, decorateArea, externalLinks, ScrolltoTop, loadTemplate } from './utils.js';
 
 // Add project-wide style path here.
 const STYLES = '/styles/styles.css';
@@ -69,3 +69,6 @@ externalLinks();
 
 //Scroll to top
 ScrolltoTop();
+
+//Load template
+loadTemplate();
