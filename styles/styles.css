@@ -181,11 +181,11 @@
 
 @media (min-width: 900px) {
     .carousel.container .carousel-next {
-        right: 2rem;
+        right: 0;
     }
 
     .carousel.container .carousel-previous {
-        left: 1rem;
+        left: 0;
     }
 }
 
