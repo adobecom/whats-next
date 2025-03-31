@@ -3,9 +3,12 @@
     {
       "id": "library",
       "title": "Library",
-      "environments": [
-        "edit"
-      ],
+      // "environments": [
+      //   "edit"
+      // ],
+      "previewHost": "main--news--adobecom.aem.page",
+      "liveHost": "main--news--adobecom.aem.live",
+      "environments": [ "edit" ],
       "isPalette": true,
       "passConfig": true,
       "paletteRect": "top: auto; bottom: 20px; left: 20px; height: 398px; width: 360px;",
