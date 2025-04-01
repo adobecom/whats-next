@@ -3,9 +3,6 @@
     {
       "id": "library",
       "title": "Library",
-      // "environments": [
-      //   "edit"
-      // ],
       "previewHost": "main--news--adobecom.aem.page",
       "liveHost": "main--news--adobecom.aem.live",
       "environments": [ "edit" ],
