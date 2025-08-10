@@ -51,4 +51,12 @@
         font-size: var(--type-heading-s-size);
         line-height: var(--type-heading-s-lh);
     }
+
+    .marquee.split.one-third.large.dark.row-reversed.intro-video {
+        border-bottom: 50px solid black;
+    }
+
+    .marquee.split.one-third.large.dark.row-reversed.intro-video video {
+        border: 20px solid black;
+    }
  }
