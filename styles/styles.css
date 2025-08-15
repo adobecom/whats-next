@@ -51,4 +51,8 @@
         font-size: var(--type-heading-s-size);
         line-height: var(--type-heading-s-lh);
     }
+
+    .marquee.split.one-third.intro-video .asset.bleed {
+        width: 75%
+    }
  }
