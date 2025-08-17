@@ -17,6 +17,10 @@
         flex-direction: column;
     }
 
+    div.section.full.video div.content {
+        background-color: black !important;
+     }
+
  @media (min-width: 77rem) {
 
     :root {
@@ -54,5 +58,19 @@
 
     .marquee.split.one-third.intro-video .asset.bleed {
         width: 75%
+    }
+
+    .marquee.split.one-third.intro-video.full .asset.bleed {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    div.section.full {
+        background-color: black;
+    }
+
+    div.section.full p:has(video) {
+        padding: 0;
+        margin: 0;
     }
  }
